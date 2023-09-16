@@ -23,6 +23,7 @@ char *get_input(char *arguments[]);
 void get_input(char *input,char *command , char *arguments[]);
 int _putchar(char c);
 int print_string(char *s);
+int _strlen(char *s);
 >>>>>>> 5726fb0dd9300af44491f38bea6dd9d0095b3a37
 #endif /* SHELL_H */
 
