@@ -25,5 +25,8 @@ char *_strdup(const char *scr);
 int _strcmp(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
+void sig_handler(int sig);
+
+
 #endif /* SHELL_H */
 

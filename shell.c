@@ -12,6 +12,7 @@ int main(void)
 		char *command, *arguments[100];
 		int env_count;
 
+		signal(SIGINT, sig_handler);
 		env_count = 0;
 		command = get_input(arguments);
 		if (command != NULL)
@@ -38,3 +39,14 @@ int main(void)
 	return (EXIT_SUCCESS);
 }
 
+/*
+ *
+ *
+ *
+ */
+void sig_handler(int sig)
+{
+	(void)sig;
+	signal(SIGINT, sig_handler);
+	write(STDIN_FILENO, "\n$ ", 3);
+}

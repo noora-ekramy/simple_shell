@@ -22,7 +22,7 @@ char *get_input(char *arguments[])
 	command = NULL;
 	inputSize = 0;
 	if (interactive_flag == 1)
-		print_string("#cisfun$ ");
+		print_string("$ ");
 	bytesRead = getline(&input, &inputSize, stdin);
 	if (bytesRead == -1)
 	{
