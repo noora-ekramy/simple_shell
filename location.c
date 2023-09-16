@@ -7,7 +7,7 @@ char *find_path(void)
 
         while (environ[i] != NULL)
         {
-                env_copy = strdup(environ[i]);
+                env_copy = _strdup(environ[i]);
                 env_key = strtok(env_copy, "=");
                 if (strcmp(env_key, "PATH") == 0)
                         return (strtok(NULL, "\n"));

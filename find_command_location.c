@@ -11,7 +11,7 @@ char *find_command_location(const char *command)
 {
 	int access_result;
 	char *command_copy;
-	command_copy = strdup(command);
+	command_copy = _strdup(command);
 	access_result = access(command_copy, X_OK);
                 if (access_result == -1)
                 {

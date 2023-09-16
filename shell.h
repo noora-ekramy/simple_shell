@@ -21,5 +21,6 @@ char *get_input(char *arguments[]);
 int _putchar(char c);
 int print_string( char *s);
 int _strlen(char *s);
+char *_strdup(char *scr);
 #endif /* SHELL_H */
 
