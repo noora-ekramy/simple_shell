@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -pedantic -std=gnu89
-SRC = shell.c _strcspn.c execute_command.c find_command_location.c
+SRC = *.c
 OUT = hsh
 
 all: $(OUT)

@@ -5,46 +5,50 @@
  */
 int main(void)
 {
-	char *input;
-	size_t inputSize;
-	char *token;
-	char *command;
-	char *arguments[100]; 
-	int argCount;
+	char *input, *command, *arguments[100];
+	size_t argCount, inputSize;
+	int interactive_flag;
 	ssize_t bytesRead;
 
+	interactive_flag= 0;
+	if (isatty(STDIN_FILENO))
+	{
+		interactive_flag=1;
+	}
 	while (1)
 	{
+		int env_count = 0;
 		input = NULL;
+		command =NULL;
 		inputSize = 0;
-		printf("#cisfun$ ");
-
-		/*Get user input*/
+		if(interactive_flag == 1)
+			printf("#cisfun$ ");
 		bytesRead = getline(&input, &inputSize, stdin);
-
 		if (bytesRead == -1)
 		{
 			free(input);
 			printf("\n"); 
 			exit(EXIT_SUCCESS); 
 		}
+		        /* Remove the newline character from user_input */
+                if (input[strlen(input) - 1] == '\n')
+                {
+                        input[strlen(input) - 1] = '\0';
+                }
+                /* Tokenize user_input to separate the command and arguments */
+                command = strtok(input, " ");
+                argCount = 0;
 
-		/* Remove the newline character from user_input */
-		if (input[strlen(input) - 1] == '\n')
-		{
-			input[strlen(input) - 1] = '\0';
-		}
-		/* Tokenize user_input to separate the command and arguments */
+                arguments[0] = command;
+                while (command != NULL)
+                {
+                        arguments[argCount] = command;
+                        argCount++;
+                        command = strtok(NULL, " ");
+                }
+                arguments[argCount] = NULL;
+                command = arguments[0];
 
-		command = strtok_r(input, " ", &token);
-		argCount = 0;
-
-		while (token != NULL)
-		{
-			arguments[argCount++] = token;
-			token = strtok_r(NULL, " ", &token);
-		}
-		arguments[argCount] = NULL; 
 
  		if (command != NULL)
 		{
@@ -53,6 +57,16 @@ int main(void)
 				free(input);
 				exit(EXIT_SUCCESS);
 			}
+			else if (strcmp(command, "env") == 0)
+               		{
+                        	while (environ[env_count] != NULL)
+                        	{
+                                	printf("%s\n", environ[env_count]);
+                                	env_count++;
+                        	}
+                        	continue;
+                	}
+
 			else
 			{
 				if (execute_command(command, arguments) == -1)
