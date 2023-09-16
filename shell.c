@@ -8,15 +8,30 @@ int main(void)
 	while (1)
 	{
 		char *command, *arguments[100];
-		int i;
+		int  env_count;
 
-		i =0;
+		env_count=0;
 		command = get_input(arguments);
- 		printf("command:  %s \n", command);
-                while(arguments[i++] != NULL)
-                        printf("argumnet %i : %s \n", i , arguments[i]);
-
-
+ 		if (command != NULL)
+		{
+			if (strcmp(command, "exit") == 0)
+				exit(EXIT_SUCCESS);
+			else if (strcmp(command, "env") == 0)
+               		{
+                        	while (environ[env_count] != NULL)
+                        	{
+                                	print_string(environ[env_count]);
+					print_string("\n");
+                                	env_count++;
+                        	}
+                        	continue;
+                	}
+			else
+			{
+				if (execute_command(command, arguments) == -1)
+					break;
+			}
+		}
 	}
 	return (EXIT_SUCCESS);
 }

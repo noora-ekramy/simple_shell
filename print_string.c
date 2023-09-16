@@ -8,7 +8,7 @@
  * @s: the string to print
 */
 
-int print_stirng(char *s)
+int print_string(char *s)
 {
 	int i = 0, count = 0;
 

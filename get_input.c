@@ -22,6 +22,7 @@ char * get_input( char *arguments[])
                 if (bytesRead == -1)
                 {
                         free(input);
+			print_string("\n");
                         exit(EXIT_SUCCESS); 
                 }
                 if (input[_strlen(input) - 1] == '\n')
