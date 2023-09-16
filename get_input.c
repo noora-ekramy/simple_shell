@@ -2,31 +2,41 @@
 /*
  *
  *
- *
  */
-
-void get_input(char *input,char *command , char *arguments[])
+char * get_input( char *arguments[])
 {
-	int argCount;
-
-
-	/* Remove the newline character from user_input */
-                if (input[strlen(input) - 1] == '\n')
+	char *input, *command;
+        size_t argCount, inputSize;
+        int interactive_flag;
+        ssize_t bytesRead;
+	
+	interactive_flag= 0;
+	if (isatty(STDIN_FILENO) == 1)
+                interactive_flag=1;
+        input = NULL;
+        command =NULL;
+        inputSize = 0;
+                if(interactive_flag == 1)
+                        printf("#cisfun$ ");
+                bytesRead = getline(&input, &inputSize, stdin);
+                if (bytesRead == -1)
                 {
-                        input[strlen(input) - 1] = '\0';
+                        free(input);
+                        printf("\n"); 
+                        exit(EXIT_SUCCESS); 
                 }
-                /* Tokenize user_input to separate the command and arguments */
+                if (input[strlen(input) - 1] == '\n')
+                        input[strlen(input) - 1] = '\0';
                 command = strtok(input, " ");
                 argCount = 0;
-
-        	arguments[0] = command;
+                arguments[0] = command;
                 while (command != NULL)
                 {
                         arguments[argCount] = command;
                         argCount++;
                         command = strtok(NULL, " ");
                 }
-                arguments[argCount] = NULL; 
+                arguments[argCount] = NULL;
                 command = arguments[0];
-
+return command;
 }
