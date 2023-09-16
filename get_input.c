@@ -1,11 +1,13 @@
 #include "shell.h"
+
 /*
  * get_input - git the input
  *
  * Return: the input
  *
  * @arguments: the arguments of the command
- */
+*/
+
 char *get_input(char *arguments[])
 {
 	char *input, *command;
