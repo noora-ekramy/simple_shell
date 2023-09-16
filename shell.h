@@ -18,5 +18,7 @@ char *find_command_location(const char *command);
 char *find_path(void);
 char *get_path(char *command);
 void get_input(char *input,char *command , char *arguments[]);
+int _putchar(char c);
+int print_string(char *s);
 #endif /* SHELL_H */
 
