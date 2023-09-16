@@ -9,7 +9,6 @@
 
 char *find_path(void)
 {
-	extern char **environ;
 	int i = 0;
 	char *env_key, *env_copy;
 
