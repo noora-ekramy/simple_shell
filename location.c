@@ -23,6 +23,14 @@ char *find_path(void)
 	return (NULL);
 }
 
+/**
+ * get_path - git the path of the command
+ *
+ * Return: the path of the command
+ *
+ * @command: the command to find the path for
+*/
+
 char *get_path(char *command)
 {
 	char *path, *tok, *command_path;
