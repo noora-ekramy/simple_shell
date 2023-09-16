@@ -9,7 +9,7 @@ char * get_input( char *arguments[])
         size_t argCount, inputSize;
         int interactive_flag;
         ssize_t bytesRead;
-	
+
 	interactive_flag= 0;
 	if (isatty(STDIN_FILENO) == 1)
                 interactive_flag=1;
@@ -17,16 +17,15 @@ char * get_input( char *arguments[])
         command =NULL;
         inputSize = 0;
                 if(interactive_flag == 1)
-                        printf("#cisfun$ ");
+                        print_string("#cisfun$ ");
                 bytesRead = getline(&input, &inputSize, stdin);
                 if (bytesRead == -1)
                 {
                         free(input);
-                        printf("\n"); 
                         exit(EXIT_SUCCESS); 
                 }
-                if (input[strlen(input) - 1] == '\n')
-                        input[strlen(input) - 1] = '\0';
+                if (input[_strlen(input) - 1] == '\n')
+                        input[_strlen(input) - 1] = '\0';
                 command = strtok(input, " ");
                 argCount = 0;
                 arguments[0] = command;

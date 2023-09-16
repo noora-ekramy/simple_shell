@@ -17,6 +17,12 @@ size_t _strcspn(const char *s, const char *reject);
 char *find_command_location(const char *command);
 char *find_path(void);
 char *get_path(char *command);
+<<<<<<< HEAD
 char *get_input(char *arguments[]);
+=======
+void get_input(char *input,char *command , char *arguments[]);
+int _putchar(char c);
+int print_string(char *s);
+>>>>>>> 5726fb0dd9300af44491f38bea6dd9d0095b3a37
 #endif /* SHELL_H */
 
