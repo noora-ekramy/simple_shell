@@ -29,9 +29,9 @@ char *get_path(char *command)
                 command_path = malloc(strlen(tok) + strlen(command) + 2);
                 if (command_path == NULL)
                         return(NULL);
-                strcpy(command_path, tok);
-                strcat(command_path, "/");
-                strcat(command_path, command);
+                _strcpy(command_path, tok);
+                _strcat(command_path, "/");
+                _strcat(command_path, command);
                 if (stat(command_path, &buffer) == 0)
                 {
                         printf("command_path = %s\n", command_path);
