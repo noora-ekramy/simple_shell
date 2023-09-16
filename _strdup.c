@@ -3,7 +3,7 @@
 /**
  * _strdup - duplicate a string
  *
- * Return : dup. string
+ * Return: dup. string
  *
  * @scr: the scr string
 */

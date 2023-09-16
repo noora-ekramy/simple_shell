@@ -19,7 +19,7 @@ char *find_path(void);
 char *get_path(char *command);
 char *get_input(char *arguments[]);
 int _putchar(char c);
-int print_string( char *s);
+int print_string(char *s);
 int _strlen(const char *s);
 char *_strdup(const char *scr);
 int _strcmp(char *s1, char *s2);

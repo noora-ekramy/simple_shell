@@ -1,4 +1,5 @@
 #include "shell.h"
+
 /**
  * _strcspn - Calculate the length of the initial segment of s
  * that does not contain any character from the reject string.
@@ -7,26 +8,27 @@
  *
  * Return: The length of the initial segment of s without any
  * matching characters from reject.
- */
+*/
+
 size_t _strcspn(const char *s, const char *reject)
 {
-    size_t count = 0;
-    const char *p;
+	size_t count = 0;
+	const char *p;
 
-    for (p = s; *p != '\0'; ++p)
-    { 
-        const char *r;
-
-        for (r = reject; *r != '\0'; ++r)
+	for (p = s; *p != '\0'; ++p)
 	{
-            if (*p == *r)
-	    {
-                return (count);
-            }
-        }
-        ++count;
-    }
+		const char *r;
 
-    return (count);
+		for (r = reject; *r != '\0'; ++r)
+		{
+			if (*p == *r)
+			{
+				return (count);
+			}
+		}
+	++count;
+	}
+
+	return (count);
 }
 
