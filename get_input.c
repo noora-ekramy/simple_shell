@@ -1,6 +1,6 @@
 #include "shell.h"
 
-/*
+/**
  * get_input - git the input
  *
  * Return: the input
