@@ -20,7 +20,8 @@ char *get_path(char *command);
 char *get_input(char *arguments[]);
 int _putchar(char c);
 int print_string( char *s);
-int _strlen(char *s);
-char *_strdup(char *scr);
+int _strlen(const char *s);
+char *_strdup(const char *scr);
+int _strcmp(char *s1, char *s2);
 #endif /* SHELL_H */
 

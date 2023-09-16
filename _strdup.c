@@ -8,7 +8,7 @@
  * @scr: the scr string
 */
 
-char *_strdup(char *scr)
+char *_strdup(const char *scr)
 {
 	int len, itr;
 	char *dest;
@@ -18,7 +18,7 @@ char *_strdup(char *scr)
 	len = _strlen(scr);
 	itr = 0;
 	dest = malloc(sizeof(char) * len + 1);
-	while (scr[itr] != NULL)
+	while (scr[itr] != '\0')
 	{
 		dest[itr] = scr[itr];
 		itr++;

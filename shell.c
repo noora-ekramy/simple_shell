@@ -14,9 +14,9 @@ int main(void)
 		command = get_input(arguments);
  		if (command != NULL)
 		{
-			if (strcmp(command, "exit") == 0)
+			if (_strcmp(command, "exit") == 0)
 				exit(EXIT_SUCCESS);
-			else if (strcmp(command, "env") == 0)
+			else if (_strcmp(command, "env") == 0)
                		{
                         	while (environ[env_count] != NULL)
                         	{
