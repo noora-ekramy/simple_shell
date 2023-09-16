@@ -1,5 +1,4 @@
 #include "shell.h"  
-
 int main(void)
 {
     char *input;
@@ -8,16 +7,32 @@ int main(void)
     char *command;
     char *arguments[100]; 
     int argCount;
-
+    ssize_t bytesRead;
     while (1)
     {
+
         input = NULL;
         inputSize = 0;
         printf("#cisfun$ ");
-        getline(&input, &inputSize, stdin);
-        input[strcspn(input, "\n")] = '\0';
 
-        
+        /*Get user input*/
+        bytesRead = getline(&input, &inputSize, stdin);
+
+        if (bytesRead == -1)
+        {
+            free(input);
+            printf("\n"); 
+            exit(EXIT_SUCCESS); 
+        }
+
+        /* Remove the newline character from user_input */
+        if (input[strlen(input) - 1] == '\n')
+        {
+            input[strlen(input) - 1] = '\0';
+        }
+
+        /* Tokenize user_input to separate the command and arguments */
+
         command = strtok_r(input, " ", &token);
         argCount = 0;
 
@@ -27,6 +42,9 @@ int main(void)
             token = strtok_r(NULL, " ", &token);
         }
         arguments[argCount] = NULL; 
+
+
+
 
         if (command != NULL)
         {
@@ -59,3 +77,4 @@ int main(void)
     }
     return EXIT_SUCCESS;
 }
+
