@@ -10,24 +10,17 @@ int main(void)
 	while (1)
 	{
 		char *command, *arguments[100];
-		int env_count;
 
 		signal(SIGINT, sig_handler);
-		env_count = 0;
+		environ = copy_env();
+		if (!environ)
+			exit(-100);
 		command = get_input(arguments);
 		if (command != NULL)
 		{
-			if (_strcmp(command, "exit") == 0)
-				exit(EXIT_SUCCESS);
-			else if (_strcmp(command, "env") == 0)
+			if (isBuiltIn(command) == 1)
 			{
-				while (environ[env_count] != NULL)
-				{
-					print_string(environ[env_count]);
-					print_string("\n");
-					env_count++;
-				}
-				continue;
+				run__builtin_commands(command , arguments);
 			}
 			else
 			{
