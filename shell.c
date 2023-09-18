@@ -12,7 +12,6 @@ int main(void)
 		char *command, *arguments[100];
 
 		signal(SIGINT, sig_handler);
-		environ = copy_env();
 		if (!environ)
 			exit(-100);
 		command = get_input(arguments);
@@ -20,7 +19,7 @@ int main(void)
 		{
 			if (isBuiltIn(command) == 1)
 			{
-				run__builtin_commands(command , arguments);
+				run_builtin_commands(command, arguments);
 			}
 			else
 			{
@@ -32,10 +31,9 @@ int main(void)
 	return (EXIT_SUCCESS);
 }
 
-/*
- *
- *
- *
+/**
+ * sig_handler - Handles the SIGINT signal.
+ * @sig: The signal number (SIGINT).
  */
 void sig_handler(int sig)
 {

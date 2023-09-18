@@ -1,4 +1,8 @@
 #include"shell.h"
+/**
+ * env_func - prints enviroment
+ * Return: 1
+ */
 int env_func(void)
 {
 	int env_count;

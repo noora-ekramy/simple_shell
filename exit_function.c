@@ -1,4 +1,9 @@
 #include "shell.h"
+/**
+ * exit_function - perform exit
+ * @args: arguments
+ * Return: 1
+ */
 int exit_function(char *args[])
 {
 	int argCount;
@@ -16,5 +21,5 @@ int exit_function(char *args[])
 	{
 		exit(0);
 	}
-	
+	return (1);
 }

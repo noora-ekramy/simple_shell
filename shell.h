@@ -26,14 +26,14 @@ int _strcmp(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
 void sig_handler(int sig);
-char **copy_env(void);
-int isBuiltIn(char * command);
-int run__builtin_commands(char *command , char *args[]);
+int isBuiltIn(char *command);
+int run_builtin_commands(char *command, char *args[]);
 int cd_func(char *args[]);
 int exit_function(char *args[]);
 int env_func(void);
 int setenv_func(char *args[]);
 int unsetenv_func(char *args[]);
+int cd_error(char *messaeg);
 
 #endif /* SHELL_H */
 
