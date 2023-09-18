@@ -15,9 +15,9 @@ char *find_path(void)
 	while (environ[i] != NULL)
 	{
 		env_copy = _strdup(environ[i]);
-		env_key = strtok(env_copy, "=");
+		env_key = _strtok(env_copy, "=");
 		if (_strcmp(env_key, "PATH") == 0)
-			return (strtok(NULL, "\n"));
+			return (_strtok(NULL, "\n"));
 		i++;
 	}
 	return (NULL);
@@ -37,7 +37,7 @@ char *get_path(char *command)
 	struct stat buffer;
 
 	path = find_path();
-	tok = strtok(path, ":");
+	tok = _strtok(path, ":");
 
 	while (tok != NULL)
 	{
@@ -52,7 +52,7 @@ char *get_path(char *command)
 			return (command_path);
 		}
 		free(command_path);
-		tok = strtok(NULL, ":");
+		tok = _strtok(NULL, ":");
 	}
 	return (NULL);
 }

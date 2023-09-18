@@ -32,14 +32,14 @@ char *get_input(char *arguments[])
 	}
 	if (input[_strlen(input) - 1] == '\n')
 		input[_strlen(input) - 1] = '\0';
-	command = strtok(input, " ");
+	command = _strtok(input, " ");
 	argCount = 0;
 	arguments[0] = command;
 	while (command != NULL)
 	{
 		arguments[argCount] = command;
 		argCount++;
-		command = strtok(NULL, " ");
+		command = _strtok(NULL, " ");
 	}
 	arguments[argCount] = NULL;
 	command = arguments[0];
