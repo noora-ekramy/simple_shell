@@ -10,28 +10,26 @@
 
 char *get_input(char *arguments[])
 {
-	char *input, *command;
-	size_t argCount, inputSize;
+	char input[1024], *command;
+	size_t argCount;
 	int interactive_flag;
 	ssize_t bytesRead;
 
 	interactive_flag = 0;
 	if (isatty(STDIN_FILENO) == 1)
 		interactive_flag = 1;
-	input = NULL;
+	/*input = NULL;*/
 	command = NULL;
-	inputSize = 0;
 	if (interactive_flag == 1)
 		print_string("$ ");
-	bytesRead = getline(&input, &inputSize, stdin);
+	bytesRead = read(STDIN_FILENO, input, sizeof(input));
 	if (bytesRead == -1)
 	{
-		free(input);
+		/*free(input);*/
 		print_string("\n");
 		exit(EXIT_SUCCESS);
 	}
-	if (input[_strlen(input) - 1] == '\n')
-		input[_strlen(input) - 1] = '\0';
+	command = _strtok(input, "\n");
 	command = _strtok(input, " ");
 	argCount = 0;
 	arguments[0] = command;
