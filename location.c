@@ -16,7 +16,7 @@ char *find_path(void)
 	{
 		env_copy = _strdup(environ[i]);
 		env_key = strtok(env_copy, "=");
-		if (strcmp(env_key, "PATH") == 0)
+		if (_strcmp(env_key, "PATH") == 0)
 			return (strtok(NULL, "\n"));
 		i++;
 	}
@@ -41,7 +41,7 @@ char *get_path(char *command)
 
 	while (tok != NULL)
 	{
-		command_path = malloc(strlen(tok) + strlen(command) + 2);
+		command_path = malloc(strlen(tok) + _strlen(command) + 2);
 		if (command_path == NULL)
 			return (NULL);
 		_strcpy(command_path, tok);
