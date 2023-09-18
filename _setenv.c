@@ -32,7 +32,7 @@ int _setenv(char *name, char *value, int overwrite)
 			if (overwrite > 0)
 			{
 				environ[i] = malloc(_strlen(name) + _strlen(value) + 2);
-				if (check_new_value(environ[i] == NULL)
+				if (check_new_value(environ[i]) == -1)
 					return (-1);
 				_strcpy(environ[i], name);
 				_strcat(environ[i], "=");
@@ -69,8 +69,6 @@ int _setenv(char *name, char *value, int overwrite)
 int check_new_value(char *new_value)
 {
 	if (new_value == NULL)
-	{
 		perror("malloc error");
-		return (-1);
-	}
+	return (-1);
 }
