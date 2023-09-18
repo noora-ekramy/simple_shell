@@ -11,7 +11,7 @@ int cd_func(char *args[])
 
 	if (args[1] == NULL)
 	{
-		home_directory = getenv("HOME");
+		home_directory = get_env_state("HOME");
 		if (home_directory == NULL)
 			return (cd_error("cd"));
 		if (chdir(home_directory) != 0)
@@ -19,7 +19,7 @@ int cd_func(char *args[])
 	}
 	else if (_strcmp(args[1], "-") == 0)
 	{
-		previous_directory = getenv("OLDPWD");
+		previous_directory = get_env_state("OLDPWD");
 		if (previous_directory == NULL)
 			return (cd_error("cd"));
 		if (chdir(previous_directory) != 0)

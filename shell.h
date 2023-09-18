@@ -15,7 +15,7 @@ extern char **environ;
 int execute_command(const char *command, char *const arguments[]);
 size_t _strcspn(const char *s, const char *reject);
 char *find_command_location(const char *command);
-char *find_path(void);
+char *get_env_state(char *env_index);
 char *get_path(char *command);
 char *get_input(char *arguments[]);
 int _putchar(char c);

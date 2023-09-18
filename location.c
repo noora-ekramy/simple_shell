@@ -1,13 +1,14 @@
 #include "shell.h"
 
 /**
- * find_path - find the var path
+ * get_env_state - find the var path
  *
  * Return: path value
  *
+ *@env_index: the key to search for
 */
 
-char *find_path(void)
+char *get_env_state(char *env_index)
 {
 	int i = 0;
 	char *env_key, *env_copy;
@@ -16,7 +17,7 @@ char *find_path(void)
 	{
 		env_copy = _strdup(environ[i]);
 		env_key = _strtok(env_copy, "=");
-		if (_strcmp(env_key, "PATH") == 0)
+		if (_strcmp(env_key, env_index) == 0)
 			return (_strtok(NULL, "\n"));
 		i++;
 	}
@@ -36,7 +37,7 @@ char *get_path(char *command)
 	char *path, *tok, *command_path;
 	struct stat buffer;
 
-	path = find_path();
+	path = get_env_state("PATH");
 	tok = _strtok(path, ":");
 
 	while (tok != NULL)
