@@ -37,5 +37,7 @@ int cd_error(char *messaeg);
 int _atoi(char *s);
 int is_flag(char c, const char *flag);
 char *_strtok(char *str, const char *flag);
+int _setenv(char *name, char *value, int overwrite);
+int _unsetenv(char *name);
 #endif /* SHELL_H */
 

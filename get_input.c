@@ -18,14 +18,12 @@ char *get_input(char *arguments[])
 	interactive_flag = 0;
 	if (isatty(STDIN_FILENO) == 1)
 		interactive_flag = 1;
-	/*input = NULL;*/
 	command = NULL;
 	if (interactive_flag == 1)
 		print_string("$ ");
 	bytesRead = read(STDIN_FILENO, input, sizeof(input));
-	if (bytesRead == -1)
+	if (bytesRead == 0)
 	{
-		/*free(input);*/
 		print_string("\n");
 		exit(EXIT_SUCCESS);
 	}
