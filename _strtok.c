@@ -13,6 +13,7 @@
 int is_flag(char c, const char *flag)
 {
 	size_t i = 0;
+
 	while (flag[i] != '\0')
 	{
 		if (c == flag[i])
@@ -36,7 +37,7 @@ int is_flag(char c, const char *flag)
 
 char *_strtok(char *str, const char *flag)
 {
-	static char *next = NULL;
+	static char *next;
 	char *token;
 
 	if (str != NULL)

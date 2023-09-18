@@ -14,7 +14,7 @@ int exit_function(char *args[])
 		argCount++;
 	if (argCount > 1)
 	{
-		exit_code =_atoi(args[1]);
+		exit_code = _atoi(args[1]);
 		exit(exit_code);
 	}
 	else
