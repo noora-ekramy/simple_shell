@@ -34,6 +34,6 @@ int env_func(void);
 int setenv_func(char *args[]);
 int unsetenv_func(char *args[]);
 int cd_error(char *messaeg);
-
+int _atoi(char *s);
 #endif /* SHELL_H */
 
