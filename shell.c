@@ -24,7 +24,7 @@ int main(void)
 			else
 			{
 				if (execute_command(command, arguments) == -1)
-					break;
+					continue;
 			}
 		}
 	}
