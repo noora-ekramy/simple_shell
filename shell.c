@@ -9,23 +9,27 @@ int main(void)
 {
 	while (1)
 	{
-		char *command, *arguments[100];
+		char *commands[100], *arguments[100];
+		int i;
 
 		signal(SIGINT, sig_handler);
 		if (!environ)
 			exit(-100);
-		command = get_input(arguments);
-		if (command != NULL)
+		get_input(commands);
+		i=0;
+		while (commands[i] != NULL)
 		{
-			if (isBuiltIn(command) == 1)
+			get_arguments(arguments, commands[i]);
+			if (isBuiltIn(commands[i]) == 1)
 			{
-				run_builtin_commands(command, arguments);
+				run_builtin_commands(commands[i], arguments);
 			}
 			else
 			{
-				if (execute_command(command, arguments) == -1)
+				if (execute_command(commands[i], arguments) == -1)
 					continue;
 			}
+			i++;
 		}
 	}
 	return (EXIT_SUCCESS);

@@ -5,13 +5,13 @@
  *
  * Return: the input
  *
- * @arguments: the arguments of the command
+ * @commands: the arguments of the command
 */
 
-char *get_input(char *arguments[])
+void get_input(char *commands[])
 {
-	char input[1024], *command;
-	size_t argCount;
+	char input[1024];
+	size_t comCount;
 	int interactive_flag;
 	ssize_t bytesRead;
 
@@ -28,6 +28,30 @@ char *get_input(char *arguments[])
 		exit(EXIT_SUCCESS);
 	}
 	command = _strtok(input, "\n");
+	comCount = 0;
+	commands[0] = command;
+	while (command != NULL)
+	{
+		commands[comCount] = command;
+		comCount++;
+		command = _strtok(NULL, "\n");
+	}
+	commands[comCount] = NULL;
+}
+
+/**
+ * get_arguments - git the input
+ *
+ * Return: the input
+ *
+ * @arguments: the arguments of the command
+ * @command: command
+*/
+
+void get_arguments(char *arguments[], char *command)
+{
+	size_t argCount;
+
 	command = _strtok(input, " ");
 	argCount = 0;
 	arguments[0] = command;
@@ -38,6 +62,4 @@ char *get_input(char *arguments[])
 		command = _strtok(NULL, " ");
 	}
 	arguments[argCount] = NULL;
-	command = arguments[0];
-	return (command);
 }
