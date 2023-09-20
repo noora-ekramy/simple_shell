@@ -27,7 +27,10 @@ int main(void)
 			else
 			{
 				if (execute_command(commands[i], arguments) == -1)
+				{
+					i++;
 					continue;
+				}
 			}
 			i++;
 		}
