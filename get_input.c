@@ -71,12 +71,6 @@ void get_arguments(char *arguments[], char *input)
 	}
 	arguments[argCount] = NULL;
 	
-	for(i=0; arguments[i]!=NULL;i++)
-			{
-			printf("i : %i ",i);
-			print_string(arguments[i]);
-			print_string("\n");
-			}
 
 }
 #define MAX_INPUT_SIZE 1024

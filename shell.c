@@ -54,7 +54,6 @@ void read_file(char *filename)
 	{
 	
 		arguments = parse_cmd(line);
-		print_string(arguments[0]);
 		if (isBuiltIn(arguments[0]) == 1)
 			{
 				run_builtin_commands(arguments[0], arguments);
