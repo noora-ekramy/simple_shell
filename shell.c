@@ -9,18 +9,19 @@ int main(int argc, char *argv[])
 {
 	if (argc != 1)
 	{
-		char *command = argv[1];
+	char *command = argv[1];
         char *arguments[100];
+	int i, result;
 
 		print_string(command);
-        for (int i = 2; i < argc; i++)
+        for (i = 2; i < argc; i++)
         {
-            arguments[i - 2] = argv[i];
-			print_string(argv[i])
+		arguments[i - 2] = argv[i];
+		print_string(argv[i]);
         }
         arguments[argc - 2] = NULL;
 
-        int result = execute_command(command, arguments);
+        result = execute_command(command, arguments);
 
         if (result == -1)
         {
