@@ -59,7 +59,7 @@ void get_arguments(char *arguments[], char *input)
 {
 	size_t argCount;
 	char *command;
-
+	int i;
 	command = _strtok(input, " ");
 	argCount = 0;
 	arguments[0] = command;
@@ -70,6 +70,14 @@ void get_arguments(char *arguments[], char *input)
 		command = _strtok(NULL, " ");
 	}
 	arguments[argCount] = NULL;
+	
+	for(i=0; arguments[i]!=NULL;i++)
+			{
+			printf("i : %i ",i);
+			print_string(arguments[i]);
+			print_string("\n");
+			}
+
 }
 #define MAX_INPUT_SIZE 1024
 /**

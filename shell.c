@@ -1,6 +1,37 @@
 #include "shell.h"
 
 /**
+ * parse_cmd - Parse Line Of Input
+ * @input:User Input To Parse
+ * Return: Array Of Char (Parsed):Simple Shell
+ */
+char **parse_cmd(char *input)
+{
+	char **tokens;
+	char *token;
+	int i, buffsize = 1024;
+
+	if (input == NULL)
+		return (NULL);
+	tokens = malloc(sizeof(char *) * buffsize);
+	if (!tokens)
+	{
+		perror("hsh");
+		return (NULL);
+	}
+
+	token = _strtok(input, "\n ");
+	for (i = 0; token; i++)
+	{
+		tokens[i] = token;
+		token = _strtok(NULL, "\n ");
+	}
+	tokens[i] = NULL;
+
+	return (tokens);
+}
+
+/**
  * read_file - Read Command From File
  * @filename: Filename
  * @argv: Program Name
@@ -11,7 +42,7 @@ void read_file(char *filename)
     FILE *fp;
     char *line = NULL;
     size_t len = 0;
-	char *arguments[100];
+	char **arguments;
   
     fp = fopen(filename, "r");
     if (fp == NULL)
@@ -21,14 +52,16 @@ void read_file(char *filename)
     }
     while ((getline(&line, &len, fp)) != -1)
 	{
-		get_arguments(arguments, line);
-			if (isBuiltIn(line) == 1)
+	
+		arguments = parse_cmd(line);
+		print_string(arguments[0]);
+		if (isBuiltIn(arguments[0]) == 1)
 			{
-				run_builtin_commands(line, arguments);
+				run_builtin_commands(arguments[0], arguments);
 			}
 			else
 			{
-				if (execute_command(line, arguments) == -1)
+				if (execute_command(arguments[0], arguments) == -1)
 				{
 					continue;
 				}
