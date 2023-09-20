@@ -5,8 +5,31 @@
  * Return: Exit status
  */
 
-int main(void)
+int main(int argc, char *argv[])
 {
+	if (argc != 1)
+	{
+		char *command = argv[1];
+        char *arguments[100];
+
+		print_string(command);
+        for (int i = 2; i < argc; i++)
+        {
+            arguments[i - 2] = argv[i];
+			print_string(argv[i])
+        }
+        arguments[argc - 2] = NULL;
+
+        int result = execute_command(command, arguments);
+
+        if (result == -1)
+        {
+            fprintf(stderr, "Command execution failed.\n");
+            return EXIT_FAILURE;
+        }
+
+        return result;
+	}
 	while (1)
 	{
 		char *commands[100], *arguments[100];
