@@ -6,7 +6,7 @@
  * @argv: Program Name
  * Return: -1 or  0
  */
-void read_file(char *filename, char **argv)
+void read_file(char *filename)
 {
     FILE *fp;
     char *line = NULL;
@@ -33,7 +33,7 @@ void read_file(char *filename, char **argv)
 					continue;
 				}
 			}
-		}
+		
 		
 	}
 	if (line)
@@ -50,7 +50,7 @@ int main(int argc, char **argv)
 {
 	if (argc == 2)
 	{
-		read_file(argv[1], argv);
+		read_file(argv[1]);
 	}
 	else
 	{
