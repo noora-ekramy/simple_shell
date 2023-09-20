@@ -1,14 +1,20 @@
 #include "shell.h"
 #include <stdlib.h>
 
-void freeStringArray(char **arr) {
-    if (arr != NULL) {
-        for (size_t i = 0; arr[i] != NULL; i++) {
-            {
-                free(arr[i]);
-            }
-        }
-    }
+void freeStringArray(char **arr)
+{
+	size_t i;
+
+    	if (arr != NULL)
+    	{
+        	for (i = 0; arr[i] != NULL; i++)
+		{
+			if (arr[i] != NULL)
+            		{
+                		free(arr[i]);
+            		}
+        	}
+    	}
 }
 /**
  * parse_cmd - Parse Line Of Input
