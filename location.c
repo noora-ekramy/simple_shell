@@ -52,11 +52,13 @@ char *get_path(char *command)
 		if (stat(command_path, &buffer) == 0)
 		{
 			free(path);
+			free(command);
 			return (command_path);
 		}
 		free(command_path);
 		tok = _strtok(NULL, ":");
 	}
 	free(path);
+	free(command);
 	return (NULL);
 }
