@@ -1,5 +1,15 @@
 #include "shell.h"
+#include <stdlib.h>
 
+void freeStringArray(char **arr) {
+    if (arr != NULL) {
+        for (size_t i = 0; arr[i] != NULL; i++) {
+            {
+                free(arr[i]);
+            }
+        }
+    }
+}
 /**
  * parse_cmd - Parse Line Of Input
  * @input:User Input To Parse
@@ -65,8 +75,8 @@ void read_file(char *filename)
 					continue;
 				}
 			}
-		free(*arguments);
 		
+		freeStringArray(arguments);
 	}
 	if (line)
 		free(line);
