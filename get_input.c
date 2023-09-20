@@ -10,23 +10,30 @@
 
 void get_input(char *commands[])
 {
-	char input[1024];
+	char *input, *command;
 	size_t comCount;
 	int interactive_flag;
 	ssize_t bytesRead;
-
+	
 	interactive_flag = 0;
 	if (isatty(STDIN_FILENO) == 1)
 		interactive_flag = 1;
 	command = NULL;
 	if (interactive_flag == 1)
-		print_string("$ ");
-	bytesRead = read(STDIN_FILENO, input, sizeof(input));
+	{	print_string("$ ");
+		input = (char *)malloc(1024);
+		bytesRead = read(STDIN_FILENO, input, sizeof(input));
+	}
+	else
+	{
+		input = read_input_from_pipe();
+	}
 	if (bytesRead == 0)
 	{
 		print_string("\n");
 		exit(EXIT_SUCCESS);
 	}
+	
 	command = _strtok(input, "\n");
 	comCount = 0;
 	commands[0] = command;
@@ -48,9 +55,10 @@ void get_input(char *commands[])
  * @command: command
 */
 
-void get_arguments(char *arguments[], char *command)
+void get_arguments(char *arguments[], char *input)
 {
 	size_t argCount;
+	char *command;
 
 	command = _strtok(input, " ");
 	argCount = 0;
@@ -62,4 +70,39 @@ void get_arguments(char *arguments[], char *command)
 		command = _strtok(NULL, " ");
 	}
 	arguments[argCount] = NULL;
+}
+#define MAX_INPUT_SIZE 1024
+
+char *read_input_from_pipe() {
+    char *input = (char *)malloc(MAX_INPUT_SIZE);
+    ssize_t bytesRead;
+    size_t inputSize = 0;
+    char c;
+
+    if (input == NULL) {
+        perror("Failed to allocate memory");
+        exit(EXIT_FAILURE);
+    }
+    while ((bytesRead = read(STDIN_FILENO, &c, 1)) > 0) {
+        if (inputSize >= MAX_INPUT_SIZE - 1) {
+          
+            char *newInput = (char *)realloc(input, 2 * MAX_INPUT_SIZE);
+            if (newInput == NULL) {
+                perror("Failed to reallocate memory");
+                free(input);
+                exit(EXIT_FAILURE);
+            }
+            input = newInput;
+        }
+
+        input[inputSize++] = c;
+
+        if (c == EOF || c == '\0') {
+            break;
+        }
+    }
+
+    input[inputSize] = '\0'; 
+
+    return input;
 }

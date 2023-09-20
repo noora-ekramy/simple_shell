@@ -31,6 +31,8 @@ int main(void)
 			}
 			i++;
 		}
+		if (isatty(STDIN_FILENO) != 1)
+        		break;
 	}
 	return (EXIT_SUCCESS);
 }

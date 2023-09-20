@@ -18,7 +18,7 @@ char *find_command_location(const char *command);
 char *get_env_state(char *env_index);
 char *get_path(char *command);
 void get_input(char *commands[]);
-void get_arguments(char *arguments[], char *command);
+void get_arguments(char *arguments[], char *input);
 int _putchar(char c);
 int print_string(char *s);
 int _strlen(const char *s);
@@ -40,5 +40,6 @@ int is_flag(char c, const char *flag);
 char *_strtok(char *str, const char *flag);
 int _setenv(char *name, char *value, int overwrite);
 int _unsetenv(char *name);
+char *read_input_from_pipe();
 #endif /* SHELL_H */
 
