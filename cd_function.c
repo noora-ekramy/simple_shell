@@ -32,7 +32,7 @@ int cd_func(char *args[])
 
 	if (getcwd(cwd, sizeof(cwd)) == NULL)
 		return (cd_error("getcwd"));
-	if (setenv("PWD", cwd, 1) != 0)
+	if (_setenv("PWD", cwd, 1) != 0)
 		return (cd_error("setenv"));
 	return (1);
 }

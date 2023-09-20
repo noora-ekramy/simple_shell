@@ -44,6 +44,8 @@ void get_input(char *commands[])
 		command = _strtok(NULL, "\n");
 	}
 	commands[comCount] = NULL;
+	free(input);
+	free(command);
 }
 
 /**

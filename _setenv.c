@@ -54,6 +54,7 @@ int _setenv(char *name, char *value, int overwrite)
 	_strcat(new_value, "=");
 	_strcat(new_value, value);
 	environ[i] = new_value;
+	free(new_value);
 	environ[++i] = NULL;
 	return (0);
 }
