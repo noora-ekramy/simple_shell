@@ -16,7 +16,7 @@ int main(void)
 		if (!environ)
 			exit(-100);
 		get_input(commands);
-		i=0;
+		i = 0;
 		while (commands[i] != NULL)
 		{
 			get_arguments(arguments, commands[i]);
@@ -32,7 +32,7 @@ int main(void)
 			i++;
 		}
 		if (isatty(STDIN_FILENO) != 1)
-        		break;
+			break;
 	}
 	return (EXIT_SUCCESS);
 }
