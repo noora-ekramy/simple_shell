@@ -38,7 +38,7 @@ int setenv_func(char *args[])
  */
 int unsetenv_func(char *args[])
 {
-	char *variable;
+	const char *variable;
 	int argCount;
 
 	argCount = 0;
@@ -51,7 +51,7 @@ int unsetenv_func(char *args[])
 		return (-1);
 	}
 	variable = args[1];
-	if (_unsetenv(variable) != 0)
+	if (unsetenv(variable) != 0)
 	{
 		perror("unsetenv");
 		return (-1);

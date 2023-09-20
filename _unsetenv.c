@@ -24,10 +24,7 @@ int _unsetenv(char *name)
 			{
 				environ[i] = malloc(_strlen(environ[i + 1]) + 1);
 				if (environ[i] == NULL)
-				{
-					free(env_copy);
 					return (-1);
-				}
 				_strcpy(environ[i], environ[i + 1]);
 			}
 			else
@@ -41,6 +38,5 @@ int _unsetenv(char *name)
 
 		i++;
 	}
-	free(env_copy);
 	return (0);
 }
