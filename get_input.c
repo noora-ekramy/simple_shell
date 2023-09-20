@@ -59,7 +59,7 @@ void get_arguments(char *arguments[], char *input)
 {
 	size_t argCount;
 	char *command;
-	int i;
+
 	command = _strtok(input, " ");
 	argCount = 0;
 	arguments[0] = command;
