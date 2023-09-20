@@ -82,7 +82,7 @@ void read_file(char *filename)
 				}
 			}
 		
-		freeStringArray(arguments);
+		/*freeStringArray(arguments);*/
 	}
 	if (line)
 		free(line);
