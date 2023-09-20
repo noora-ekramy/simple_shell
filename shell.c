@@ -65,7 +65,7 @@ void read_file(char *filename)
 					continue;
 				}
 			}
-		
+		free(arguments);
 		
 	}
 	if (line)
