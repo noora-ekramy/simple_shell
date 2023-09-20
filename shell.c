@@ -1,36 +1,59 @@
 #include "shell.h"
 
 /**
+ * read_file - Read Command From File
+ * @filename: Filename
+ * @argv: Program Name
+ * Return: -1 or  0
+ */
+void read_file(char *filename, char **argv)
+{
+    FILE *fp;
+    char *line = NULL;
+    size_t len = 0;
+	char *arguments[100];
+  
+    fp = fopen(filename, "r");
+    if (fp == NULL)
+    {
+        perror("fopen");
+        exit(EXIT_FAILURE);
+    }
+    while ((getline(&line, &len, fp)) != -1)
+	{
+		get_arguments(arguments, line);
+			if (isBuiltIn(line) == 1)
+			{
+				run_builtin_commands(line, arguments);
+			}
+			else
+			{
+				if (execute_command(line, arguments) == -1)
+				{
+					continue;
+				}
+			}
+		}
+		
+	}
+	if (line)
+		free(line);
+	fclose(fp);
+	exit(0);
+}
+/**
  * main - entry point
  * Return: Exit status
  */
 
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
-	if (argc != 1)
+	if (argc == 2)
 	{
-	char *command = argv[1];
-        char *arguments[100];
-	int i, result;
-
-		print_string(command);
-        for (i = 2; i < argc; i++)
-        {
-		arguments[i - 2] = argv[i];
-		print_string(argv[i]);
-        }
-        arguments[argc - 2] = NULL;
-
-        result = execute_command(command, arguments);
-
-        if (result == -1)
-        {
-            fprintf(stderr, "Command execution failed.\n");
-            return EXIT_FAILURE;
-        }
-
-        return result;
+		read_file(argv[1], argv);
 	}
+	else
+	{
 	while (1)
 	{
 		char *commands[100], *arguments[100];
@@ -60,6 +83,7 @@ int main(int argc, char *argv[])
 		}
 		if (isatty(STDIN_FILENO) != 1)
 			break;
+	}
 	}
 	return (EXIT_SUCCESS);
 }
