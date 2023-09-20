@@ -21,7 +21,7 @@ char *get_env_state(char *env_index)
 			return (_strtok(NULL, "\n"));
 		i++;
 	}
-	free(env_copy);
+	/*free(env_copy);*/
 	return (NULL);
 }
 
@@ -51,8 +51,9 @@ char *get_path(char *command)
 		_strcat(command_path, command);
 		if (stat(command_path, &buffer) == 0)
 		{
-			free(path);
+			/*free(path);*/
 			free(command);
+			printf("command_path = %s\n", command_path);
 			return (command_path);
 		}
 		free(command_path);

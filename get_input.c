@@ -44,7 +44,7 @@ void get_input(char *commands[])
 		command = _strtok(NULL, "\n");
 	}
 	commands[comCount] = NULL;
-	free(input);
+	/*free(input);*/
 	free(command);
 }
 
@@ -57,7 +57,7 @@ void get_input(char *commands[])
  * @input: command
 */
 
-void get_arguments(char *arguments[], char *input)
+size_t get_arguments(char *arguments[], char *input)
 {
 	size_t argCount;
 	char *command;
@@ -72,6 +72,7 @@ void get_arguments(char *arguments[], char *input)
 		command = _strtok(NULL, " ");
 	}
 	arguments[argCount] = NULL;
+	return (argCount);
 }
 #define MAX_INPUT_SIZE 1024
 /**

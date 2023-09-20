@@ -6,7 +6,7 @@
  */
 int cd_func(char *args[])
 {
-	const char *home_directory, *previous_directory;
+	char *home_directory, *previous_directory;
 	char cwd[1024];
 
 	if (args[1] == NULL)
@@ -19,8 +19,8 @@ int cd_func(char *args[])
 			free(home_directory);
 			return (cd_error("cd"));
 		}
+		free(home_directory);
 	}
-	free(home_directory);
 	else if (_strcmp(args[1], "-") == 0)
 	{
 		previous_directory = get_env_state("OLDPWD");
@@ -31,8 +31,8 @@ int cd_func(char *args[])
 			free(previous_directory);
 			return (cd_error("cd"));
 		}
+		free(previous_directory);
 	}
-	free(previous_directory);
 	else
 		if (chdir(args[1]) != 0)
 			return (cd_error("cd"));
