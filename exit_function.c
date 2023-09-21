@@ -8,7 +8,7 @@ int is_int(char *input)
 	{
 		if(input[i] <= '0' || input[i] >= '9' )
 		{
-			if(input[i] == '-' || input[i] =='-')
+			if(input[i] == '+' || input[i] =='-')
 			{
 				i++;
 				continue;
@@ -40,7 +40,7 @@ int exit_function(char *args[] , int last)
 		if(is_int(args[1])== 0)
 		{
 			free(args);
-			 fprintf(stderr, "./hsh: 1: exit: Illegal number: %d\n", exit_code);
+			 fprintf(stderr, "./hsh: : exit: Illegal number: %d\n", exit_code);
                         return(2);
 		}
 		exit_code = _atoi(args[1]);
