@@ -7,10 +7,12 @@
  */
 char *_getline(void)
 {
+    int BUFSIZE = 1024;
     int i, buffsize = 1024;
     char c = 0;
     char *buff ;
-
+    char *new_buff;
+    ssize_t rd;
 	if (isatty(STDIN_FILENO) != 1)
 		return (read_input_from_pipe());
 
@@ -26,7 +28,7 @@ char *_getline(void)
         if (i >= buffsize - 1)
         {
             buffsize += BUFSIZE;
-            char *new_buff = realloc(buff, buffsize);
+            new_buff = realloc(buff, buffsize);
             if (new_buff == NULL)
             {
                 perror("realloc");
@@ -35,7 +37,7 @@ char *_getline(void)
             }
             buff = new_buff;
         }
-        ssize_t rd = read(STDIN_FILENO, &c, 1);
+        rd = read(STDIN_FILENO, &c, 1);
         if (rd == 0)
         {
             free(buff);
@@ -71,7 +73,7 @@ char **get_input(void)
 
 	char *input;
 	int interactive_flag;
-	ssize_t bytesRead;
+
 
     /*******/
 	interactive_flag = 0;
@@ -79,16 +81,13 @@ char **get_input(void)
 		interactive_flag = 1;
 	if (interactive_flag == 1)
 	{	print_string("$ ");
-		bytesRead = getline(&input, &len, stdin);
+		
 	}
 	else
 	{
 		input = read_input_from_pipe();
 	}
-	if (bytesRead == 0)
-	{
-		exit(EXIT_SUCCESS);
-	}
+
     /*******/
 
 

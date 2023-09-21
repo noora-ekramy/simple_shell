@@ -41,5 +41,6 @@ char *_strtok(char *str, const char *flag);
 int _setenv(char *name, char *value, int overwrite);
 int _unsetenv(char *name);
 char *read_input_from_pipe();
+char *_getline(void);
 #endif /* SHELL_H */
 
