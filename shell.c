@@ -94,6 +94,7 @@ int is_all_spc(char *input)
 
 int main(int argc, char **argv)
 {
+	int  last_exit=0;
 	if (argc == 2)
 		read_file(argv[1]);
 	else
@@ -102,7 +103,7 @@ int main(int argc, char **argv)
 	{
 		char **commands, *input;
 		char **arguments;
-		int i , last_exit=0;
+		int i ;
 
 		signal(SIGINT, sig_handler);
 		if (!environ)
