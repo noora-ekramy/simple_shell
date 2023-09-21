@@ -46,5 +46,6 @@ int execute_command(const char *command, char *const arguments[])
 		else
 			return (-1);
 	}
+	free(command_location);
 	return (0);
 }
