@@ -70,7 +70,7 @@ void get_arguments(char *arguments[], char *input)
 		command = _strtok(NULL, " ");
 	}
 	arguments[argCount] = NULL;
-	
+
 
 }
 #define MAX_INPUT_SIZE 1024

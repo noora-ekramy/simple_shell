@@ -1,21 +1,6 @@
 #include "shell.h"
 #include <stdlib.h>
 
-void freeStringArray(char **arr)
-{
-	size_t i;
-
-    	if (arr != NULL)
-    	{
-        	for (i = 0; arr[i] != NULL; i++)
-		{
-			if (arr[i] != NULL)
-            		{
-                		free(arr[i]);
-            		}
-        	}
-    	}
-}
 /**
  * parse_cmd - Parse Line Of Input
  * @input:User Input To Parse
@@ -49,31 +34,29 @@ char **parse_cmd(char *input)
 
 /**
  * read_file - Read Command From File
- * @filename: Filename
- * @argv: Program Name
+ * @filename: File name
  * Return: -1 or  0
  */
 void read_file(char *filename)
 {
-    FILE *fp;
-    char *line = NULL;
-    size_t len = 0;
+	FILE *fp;
+	char *line = NULL;
+	size_t len = 0;
 	char **arguments;
-  
-    fp = fopen(filename, "r");
-    if (fp == NULL)
-    {
-        perror("fopen");
-        exit(EXIT_FAILURE);
-    }
-    while ((getline(&line, &len, fp)) != -1)
+
+	fp = fopen(filename, "r");
+	if (fp == NULL)
 	{
-	
+		perror("fopen");
+		exit(EXIT_FAILURE);
+	}
+	while ((getline(&line, &len, fp)) != -1)
+	{
 		arguments = parse_cmd(line);
 		if (isBuiltIn(arguments[0]) == 1)
-			{
-				run_builtin_commands(arguments[0], arguments);
-			}
+		{
+			run_builtin_commands(arguments[0], arguments);
+		}
 			else
 			{
 				if (execute_command(arguments[0], arguments) == -1)
@@ -81,7 +64,7 @@ void read_file(char *filename)
 					continue;
 				}
 			}
-		
+
 		free(arguments);
 	}
 	if (line)
@@ -92,14 +75,14 @@ void read_file(char *filename)
 /**
  * main - entry point
  * Return: Exit status
+ * @argc: argc
+ * @argv: argv
  */
 
 int main(int argc, char **argv)
 {
 	if (argc == 2)
-	{
 		read_file(argv[1]);
-	}
 	else
 	{
 	while (1)
@@ -129,7 +112,6 @@ int main(int argc, char **argv)
 				}
 			}
 			i++;
-			
 		free(arguments);
 		}
 		if (isatty(STDIN_FILENO) != 1)
