@@ -87,14 +87,14 @@ int main(int argc, char **argv)
 	{
 	while (1)
 	{
-		char *commands[100];
+		char **commands;
 		char **arguments;
 		int i;
 
 		signal(SIGINT, sig_handler);
 		if (!environ)
 			exit(-100);
-		get_input(commands);
+		commands = get_input();
 		i = 0;
 		while (commands[i] != NULL)
 		{
@@ -114,6 +114,7 @@ int main(int argc, char **argv)
 			i++;
 		free(arguments);
 		}
+		free(commands);
 		if (isatty(STDIN_FILENO) != 1)
 			break;
 	}

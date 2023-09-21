@@ -8,13 +8,18 @@
  * @commands: the arguments of the command
 */
 
-void get_input(char *commands[])
+char **get_input(void)
 {
-	char *input, *command;
-	size_t comCount;
+	char **tokens;
+	char *token;
+	int i, buffsize = 1024;	
+	
+
+	char *input;
 	int interactive_flag;
 	ssize_t bytesRead;
 
+    /*******/
 	interactive_flag = 0;
 	if (isatty(STDIN_FILENO) == 1)
 		interactive_flag = 1;
@@ -33,17 +38,26 @@ void get_input(char *commands[])
 		print_string("\n");
 		exit(EXIT_SUCCESS);
 	}
+    /*******/
 
-	command = _strtok(input, "\n");
-	comCount = 0;
-	commands[0] = command;
-	while (command != NULL)
+
+	if (input == NULL)
+		return (NULL);
+	tokens = malloc(sizeof(char *) * buffsize);
+	if (!tokens)
 	{
-		commands[comCount] = command;
-		comCount++;
-		command = _strtok(NULL, "\n");
+		perror("hsh");
+		return (NULL);
 	}
-	commands[comCount] = NULL;
+    token = _strtok(input, "\n");
+	for (i = 0; token; i++)
+	{
+		tokens[i] = token;
+		token = _strtok(NULL, "\n ");
+	}
+	tokens[i] = NULL;
+
+	return (tokens);
 }
 
 /**
@@ -66,6 +80,7 @@ void get_arguments(char *arguments[], char *input)
 	while (command != NULL)
 	{
 		arguments[argCount] = command;
+	
 		argCount++;
 		command = _strtok(NULL, " ");
 	}
