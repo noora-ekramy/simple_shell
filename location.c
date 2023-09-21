@@ -54,7 +54,6 @@ char *get_path(char *command)
 		{
 			free(command);
 			free(path);
-			free(command);
 			return (NULL);
 		}
 		_strcpy(command_path, tok);
@@ -70,7 +69,6 @@ char *get_path(char *command)
 		tok = _strtok(NULL, ":");
 	}
 	free(command);
-	free(command_path);
 	free(path);
 	return (NULL);
 }

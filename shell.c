@@ -72,6 +72,18 @@ void read_file(char *filename)
 	fclose(fp);
 	exit(0);
 }
+int is_all_spc(char *input)
+{
+	int i = 0;
+	while (input[i] != '\0')
+	{	
+		if (input[i] != ' ')
+			return (0);
+		i++;
+	}
+	return (1);
+
+}
 /**
  * main - entry point
  * Return: Exit status
@@ -95,6 +107,11 @@ int main(int argc, char **argv)
 		if (!environ)
 			exit(-100);
 		input = _getline();
+		if (is_all_spc(input))
+		{
+			exit(0);
+			continue;
+		}
 		commands = parse_cmd(input);
 		i = 0;
 		while (commands[i] != NULL)
