@@ -110,7 +110,7 @@ int main(int argc, char **argv)
 	{
 		char **commands, *input;
 		char **arguments;
-		int i , j ;
+		int i;
 
 		signal(SIGINT, sig_handler);
 		if (!environ)
