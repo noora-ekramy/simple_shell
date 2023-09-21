@@ -32,6 +32,10 @@ int execute_command(const char *command, char *const arguments[])
 			free(command_location);
 			exit(EXIT_FAILURE);
 		}
+		else
+		{
+			free(command_location);
+		}
 	}
 	else
 	{
