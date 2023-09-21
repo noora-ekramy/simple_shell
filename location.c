@@ -50,7 +50,10 @@ char *get_path(char *command)
 	{
 		command_path = malloc(strlen(tok) + _strlen(command) + 2);
 		if (command_path == NULL)
+		{
+			free(path);
 			return (NULL);
+		}
 		_strcpy(command_path, tok);
 		_strcat(command_path, "/");
 		_strcat(command_path, command);
@@ -62,6 +65,7 @@ char *get_path(char *command)
 		free(command_path);
 		tok = _strtok(NULL, ":");
 	}
+	free(command_path);
 	free(path);
 	return (NULL);
 }
