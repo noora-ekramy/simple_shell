@@ -25,8 +25,9 @@ char *get_env_state(char *env_index)
 			return (ans);
 		}
 		i++;
+		free(env_copy);
 	}
-	free(env_copy);
+	
 	return (NULL);
 }
 
