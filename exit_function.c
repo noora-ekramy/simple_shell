@@ -16,6 +16,11 @@ int exit_function(char *args[] , int last)
 	{
 		exit_code = _atoi(args[1]);
 		free(args);
+		if(exit_code<0)
+		{
+			cd_error("stderr");
+			return(-1);
+		}
 		return(exit_code);
 	}
 	else
