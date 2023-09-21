@@ -126,12 +126,6 @@ int main(int argc, char **argv)
 		while (commands[i] != NULL)
 		{
 			arguments = get_arguments(commands[i]);
-			     j=0;
-                while(arguments [j] != NULL)
-                {
-                        printf("%s \n" ,arguments[j] );
-                        j++;
-                }
 			if (isBuiltIn(arguments[0]) == 1)
 			{
 				if(_strcmp(arguments[0], "exit") == 0)

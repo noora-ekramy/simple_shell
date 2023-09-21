@@ -14,9 +14,7 @@ int exit_function(char *args[] , int last)
 		argCount++;
 	if (argCount > 1)
 	{
-		printf("%s \n", args[1]);
 		exit_code = _atoi(args[1]);
-		printf("%u \n" , exit_code);
 		free(args);
 		return(exit_code);
 	}
