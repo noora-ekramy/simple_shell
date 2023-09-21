@@ -104,7 +104,7 @@ int main(int argc, char **argv)
 	{
 	while (1)
 	{
-		char *commands[100], *arguments[100];
+		char *commands[100], char **arguments;;
 		int i;
 
 		signal(SIGINT, sig_handler);
@@ -114,20 +114,22 @@ int main(int argc, char **argv)
 		i = 0;
 		while (commands[i] != NULL)
 		{
-			get_arguments(arguments, commands[i]);
-			if (isBuiltIn(commands[i]) == 1)
+			arguments = parse_cmd(line);
+			if (isBuiltIn(arguments[0]) == 1)
 			{
-				run_builtin_commands(commands[i], arguments);
+				run_builtin_commands(arguments[0], arguments);
 			}
 			else
 			{
-				if (execute_command(commands[i], arguments) == -1)
+				if (execute_command(arguments[0], arguments) == -1)
 				{
 					i++;
 					continue;
 				}
 			}
 			i++;
+			
+		free(arguments);
 		}
 		if (isatty(STDIN_FILENO) != 1)
 			break;
