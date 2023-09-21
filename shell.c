@@ -109,7 +109,7 @@ int main(int argc, char **argv)
 		input = _getline();
 		if (is_all_spc(input))
 		{
-			exit(0);
+			free(input);
 			continue;
 		}
 		commands = parse_cmd(input);
