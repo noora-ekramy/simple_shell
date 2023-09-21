@@ -17,11 +17,14 @@ char *find_command_location(const char *command)
 	if (access_result == -1)
 	{
 		command_copy = get_path(command_copy);
+		if(command_copy == NULL)
+		{
+			return (NULL);
+		}
 	}
 	access_result = access(command_copy, X_OK);
 	if (access_result == -1)
 	{
-		
 		return (NULL);
 	}
 	return (command_copy);
