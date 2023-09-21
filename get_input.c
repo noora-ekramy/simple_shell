@@ -23,11 +23,9 @@ char **get_input(void)
 	interactive_flag = 0;
 	if (isatty(STDIN_FILENO) == 1)
 		interactive_flag = 1;
-	command = NULL;
 	if (interactive_flag == 1)
 	{	print_string("$ ");
-		input = (char *)malloc(1024);
-		bytesRead = read(STDIN_FILENO, input, sizeof(input));
+		bytesRead = getline(&input, &len, stdin);
 	}
 	else
 	{
