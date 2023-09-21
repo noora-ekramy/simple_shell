@@ -21,7 +21,7 @@ char *find_command_location(const char *command)
 	access_result = access(command_copy, X_OK);
 	if (access_result == -1)
 	{
-		free(command_copy);
+		
 		return (NULL);
 	}
 	return (command_copy);

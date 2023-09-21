@@ -39,6 +39,7 @@ char *_getline(void)
             }
             buff = new_buff;
         }
+		fflush(stdout);
         rd = read(STDIN_FILENO, &c, 1);
         if (rd == 0)
         {
