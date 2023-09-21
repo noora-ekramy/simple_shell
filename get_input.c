@@ -15,6 +15,8 @@ char *_getline(void)
     ssize_t rd;
 	if (isatty(STDIN_FILENO) != 1)
 		return (read_input_from_pipe());
+	else
+		print_string("$ ");
 
 	buff = malloc(buffsize);	
     if (buff == NULL)
