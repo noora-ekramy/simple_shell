@@ -122,22 +122,30 @@ char **get_input(void)
  * @input: command
 */
 
-void get_arguments(char *arguments[], char *input)
+char ** get_arguments( char *input)
 {
-	size_t argCount;
-	char *command;
+	char **tokens;
+	char *token;
+	int i, buffsize = 1024;
 
-	command = _strtok(input, " ");
-	argCount = 0;
-	arguments[0] = command;
-	while (command != NULL)
+	if (input == NULL)
+		return (NULL);
+	tokens = malloc(sizeof(char *) * buffsize);
+	if (!tokens)
 	{
-		arguments[argCount] = command;
-	
-		argCount++;
-		command = _strtok(NULL, " ");
+		perror("hsh");
+		return (NULL);
 	}
-	arguments[argCount] = NULL;
+
+	token = _strtok(input, " ");
+	for (i = 0; token; i++)
+	{
+		tokens[i] = token;
+		token = _strtok(NULL, " ");
+	}
+	tokens[i] = NULL;
+
+	return (tokens);
 
 
 }

@@ -18,7 +18,7 @@ char *find_command_location(const char *command);
 char *get_env_state(char *env_index);
 char *get_path(char *command);
 char **get_input(void);
-void get_arguments(char *arguments[], char *input);
+char ** get_arguments( char *input);
 int _putchar(char c);
 int print_string(char *s);
 int _strlen(const char *s);

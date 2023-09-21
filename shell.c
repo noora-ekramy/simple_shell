@@ -116,7 +116,7 @@ int main(int argc, char **argv)
 		i = 0;
 		while (commands[i] != NULL)
 		{
-			arguments = parse_cmd(commands[i]);
+			arguments = get_arguments(commands[i]);
 			if (isBuiltIn(arguments[0]) == 1)
 			{
 				run_builtin_commands(arguments[0], arguments);
