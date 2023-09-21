@@ -41,7 +41,7 @@ void read_file(char *filename)
 {
 	FILE *fp;
 	char *line = NULL;
-	size_t len = 0;
+	size_t len = 0, j;
 	char **arguments;
 
 	fp = fopen(filename, "r");
@@ -53,6 +53,13 @@ void read_file(char *filename)
 	while ((getline(&line, &len, fp)) != -1)
 	{
 		arguments = parse_cmd(line);
+		j=0;
+		while(arguments [j] != NULL)
+		{
+			printf("%s \n" ,arguments[j] );
+			j++;
+		}
+
 		if (isBuiltIn(arguments[0]) == 1)
 		{
 			run_builtin_commands(arguments[0], arguments);
@@ -103,7 +110,7 @@ int main(int argc, char **argv)
 	{
 		char **commands, *input;
 		char **arguments;
-		int i ;
+		int i , j ;
 
 		signal(SIGINT, sig_handler);
 		if (!environ)
@@ -119,13 +126,22 @@ int main(int argc, char **argv)
 		while (commands[i] != NULL)
 		{
 			arguments = get_arguments(commands[i]);
+			     j=0;
+                while(arguments [j] != NULL)
+                {
+                        printf("%s \n" ,arguments[j] );
+                        j++;
+                }
 			if (isBuiltIn(arguments[0]) == 1)
 			{
 				if(_strcmp(arguments[0], "exit") == 0)
 				{
+				
+					
+					last_exit = exit_function(arguments, last_exit);
 					free(commands);
 					free(input);
-					exit(exit_function(arguments, last_exit));
+					exit(last_exit);
 					return (EXIT_SUCCESS);
 				}
 				run_builtin_commands(arguments[0], arguments);
