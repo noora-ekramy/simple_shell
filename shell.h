@@ -30,7 +30,7 @@ void sig_handler(int sig);
 int isBuiltIn(char *command);
 int run_builtin_commands(char *command, char *args[]);
 int cd_func(char *args[]);
-int exit_function(char *args[]);
+int exit_function(char *args[] , int last);
 int env_func(void);
 int setenv_func(char *args[]);
 int unsetenv_func(char *args[]);

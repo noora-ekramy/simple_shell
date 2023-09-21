@@ -4,7 +4,7 @@
  * @args: arguments
  * Return: 1
  */
-int exit_function(char *args[])
+int exit_function(char *args[] , int last)
 {
 	int argCount;
 	int exit_code;
@@ -21,8 +21,8 @@ int exit_function(char *args[])
 	else
 	{
 		free(args);
-		return(0);
+		return(last);
 	}
 	free(args);
-	return (0);
+	return (last);
 }

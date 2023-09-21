@@ -102,7 +102,7 @@ int main(int argc, char **argv)
 	{
 		char **commands, *input;
 		char **arguments;
-		int i ;
+		int i , last_exit=0;
 
 		signal(SIGINT, sig_handler);
 		if (!environ)
@@ -124,7 +124,7 @@ int main(int argc, char **argv)
 				{
 					free(commands);
 					free(input);
-					exit(exit_function(arguments));
+					exit(exit_function(arguments, last_exit));
 					return (EXIT_SUCCESS);
 				}
 				run_builtin_commands(arguments[0], arguments);
@@ -132,7 +132,8 @@ int main(int argc, char **argv)
 			}
 			else
 			{
-				if (execute_command(arguments[0], arguments) == -1)
+				last_exit = execute_command(arguments[0], arguments);
+				if (last_exit != 0)
 				{
 					i++;
 					free(arguments);
