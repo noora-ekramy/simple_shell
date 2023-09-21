@@ -39,6 +39,7 @@ int exit_function(char *args[] , int last)
 	{
 		if(is_int(args[1])== 0)
 		{
+			free(args);
 			 fprintf(stderr, "./hsh: 1: exit: Illegal number: %d\n", exit_code);
                         return(2);
 		}
