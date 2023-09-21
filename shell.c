@@ -78,7 +78,7 @@ int is_all_spc(char *input)
 	int i = 0;
 	while (input[i] != '\0')
 	{	
-		if (input[i] != ' ')
+		if (input[i] != ' ' && input[i] != '\n' )
 			return (0);
 		i++;
 	}
