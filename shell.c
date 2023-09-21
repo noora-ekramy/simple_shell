@@ -104,7 +104,8 @@ int main(int argc, char **argv)
 	{
 	while (1)
 	{
-		char *commands[100], char **arguments;;
+		char *commands[100];
+		char **arguments;
 		int i;
 
 		signal(SIGINT, sig_handler);
@@ -114,7 +115,7 @@ int main(int argc, char **argv)
 		i = 0;
 		while (commands[i] != NULL)
 		{
-			arguments = parse_cmd(line);
+			arguments = parse_cmd(commands[i]);
 			if (isBuiltIn(arguments[0]) == 1)
 			{
 				run_builtin_commands(arguments[0], arguments);
