@@ -127,6 +127,7 @@ int main(int argc, char **argv)
 				if (execute_command(arguments[0], arguments) == -1)
 				{
 					i++;
+					free(arguments);
 					continue;
 				}
 			}
