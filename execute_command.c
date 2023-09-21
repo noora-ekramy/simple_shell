@@ -15,7 +15,7 @@ int execute_command(const char *command, char *const arguments[])
 	if (command_location == NULL)
 	{
 		free(command_location);
-		return (cd_error("Command not found") + 2);
+		return (cd_error("Command not found") -1);
 	}
 	child_pid = fork();
 	if (child_pid == -1)
