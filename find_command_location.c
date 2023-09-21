@@ -10,7 +10,7 @@
 char *find_command_location(const char *command)
 {
 	int access_result;
-	char *command_copy, ;
+	char *command_copy;
 
 	command_copy = _strdup(command);
 	access_result = access(command_copy, X_OK);
