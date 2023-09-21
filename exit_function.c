@@ -6,7 +6,7 @@ int is_int(char *input)
 
 	while(input[i] != '\0')
 	{
-		if(input[i] <= '0' || input[i] >= '9' )
+		if(input[i] < '0' || input[i] > '9' )
 		{
 			if(input[i] == '+' || input[i] =='-')
 			{
@@ -39,8 +39,9 @@ int exit_function(char *args[] , int last)
 	{
 		if(is_int(args[1])== 0)
 		{
+			
+			fprintf(stderr, "./hsh: 1: exit: Illegal number: %s\n", args[1]);
 			free(args);
-			 fprintf(stderr, "./hsh: : exit: Illegal number: %d\n", exit_code);
                         return(2);
 		}
 		exit_code = _atoi(args[1]);
