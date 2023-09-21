@@ -18,8 +18,8 @@ int exit_function(char *args[] , int last)
 		free(args);
 		if(exit_code<0)
 		{
-			cd_error("stderr");
-			return(-1);
+			fprintf(stderr, "./hsh: 1: exit: Illegal number: %d\n", exit_code);
+			return(2);
 		}
 		return(exit_code);
 	}
