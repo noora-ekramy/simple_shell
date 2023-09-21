@@ -21,8 +21,8 @@ int exit_function(char *args[] , int last)
 	else
 	{
 		free(args);
-		return(last + 3);
+		return(last);
 	}
 	free(args);
-	return (last + 3);
+	return (last);
 }
