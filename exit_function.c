@@ -15,11 +15,14 @@ int exit_function(char *args[])
 	if (argCount > 1)
 	{
 		exit_code = _atoi(args[1]);
-		exit(exit_code);
+		free(args);
+		return(exit_code);
 	}
 	else
 	{
-		exit(0);
+		free(args);
+		return(0);
 	}
-	return (1);
+	free(args);
+	return (0);
 }

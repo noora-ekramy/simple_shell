@@ -120,7 +120,15 @@ int main(int argc, char **argv)
 			arguments = get_arguments(commands[i]);
 			if (isBuiltIn(arguments[0]) == 1)
 			{
+				if(_strcmp(arguments[0], "exit") == 0)
+				{
+					free(commands);
+					free(input);
+					exit(exit_function(arguments));
+					return (EXIT_SUCCESS);
+				}
 				run_builtin_commands(arguments[0], arguments);
+				printf("hi");
 			}
 			else
 			{
