@@ -11,16 +11,22 @@
 char *get_env_state(char *env_index)
 {
 	int i = 0;
-	char *env_key, *env_copy;
+	char *env_key, *env_copy, *value , *ans;
 
 	while (environ[i] != NULL)
 	{
 		env_copy = _strdup(environ[i]);
 		env_key = _strtok(env_copy, "=");
+		value = _strtok(NULL, "\n");
 		if (_strcmp(env_key, env_index) == 0)
-			return (_strtok(NULL, "\n"));
+		{
+			ans = _strdup(value);
+			free(env_copy);
+			return (ans);
+		}
 		i++;
 	}
+	free(env_copy);
 	return (NULL);
 }
 
@@ -50,10 +56,12 @@ char *get_path(char *command)
 		_strcat(command_path, command);
 		if (stat(command_path, &buffer) == 0)
 		{
+			free(path);
 			return (command_path);
 		}
 		free(command_path);
 		tok = _strtok(NULL, ":");
 	}
+	free(path);
 	return (NULL);
 }
