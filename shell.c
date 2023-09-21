@@ -61,6 +61,7 @@ void read_file(char *filename)
 			{
 				if (execute_command(arguments[0], arguments) == -1)
 				{
+					free(arguments);
 					continue;
 				}
 			}
