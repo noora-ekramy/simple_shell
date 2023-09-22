@@ -11,7 +11,7 @@
 char *get_env_state(char *env_index)
 {
 	int i = 0;
-	char *env_key, *env_copy, *value , *ans;
+	char *env_key, *env_copy, *value, *ans;
 
 	while (environ[i] != NULL)
 	{
@@ -27,7 +27,7 @@ char *get_env_state(char *env_index)
 		i++;
 		free(env_copy);
 	}
-	
+
 	return (NULL);
 }
 

@@ -17,7 +17,7 @@ char *find_command_location(const char *command)
 	if (access_result == -1)
 	{
 		command_copy = get_path(command_copy);
-		if(command_copy == NULL)
+		if (command_copy == NULL)
 		{
 			return (NULL);
 		}

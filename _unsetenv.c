@@ -28,12 +28,12 @@ int _unsetenv(char *name)
 				environ[i] = NULL;
 		}
 		if (_strcmp(env_key, name) == 0)
-		{ 
-            free(env_copy);
+		{
+			free(env_copy);
 			flag = 1;
 			continue;
 		}
-        free(env_copy);
+		free(env_copy);
 		i++;
 	}
 	return (0);

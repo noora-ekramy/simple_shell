@@ -39,62 +39,72 @@ char **parse_cmd(char *input)
  */
 int read_file(char *filename)
 {
-	int  last_exit=0;
+	int  last_exit = 0;
 	FILE *fp;
 	char *line = NULL;
 	size_t len = 0;
-	char **arguments , *input;
+	char **arguments, *input;
 
 	fp = fopen(filename, "r");
 	if (fp == NULL)
 	{
 		fprintf(stderr, "./hsh: 0: Can't open %s\n", filename);
-        return (127);
+		return (127);
 	}
-	while ((getline(&line, &len, fp))!= -1)
+	while ((getline(&line, &len, fp)) != -1)
 	{
 
-                input = _strtok(line, "\n");
-                if (is_all_spc(input))
-                {
-                        last_exit =0;
-                        continue;
-                }
-                
+		input = _strtok(line, "\n");
+		if (is_all_spc(input))
+		{
+			last_exit = 0;
+			continue;
+		}
+
 			arguments = get_arguments(input);
 			if (isBuiltIn(arguments[0]) == 1)
 			{
-				if(_strcmp(arguments[0], "exit") == 0)
-				{			
+				if (_strcmp(arguments[0], "exit") == 0)
+				{
 					last_exit = exit_function(arguments, last_exit);
 					exit(last_exit);
 					return (EXIT_SUCCESS);
 				}
 				run_builtin_commands(arguments[0], arguments);
-				
+
 			}
 			else
 			{
 				last_exit = execute_command(arguments[0], arguments);
-			}       
-                if(arguments != NULL)
-		        free(arguments);
+			}
+			if (arguments != NULL)
+				free(arguments);
 	}
-	if (line!= NULL)
+	if (line != NULL)
 		free(line);
 	fclose(fp);
 
-	return 0;
+	return (0);
 }
+
+/**
+ * is_all_spc - check if all the input are spaces
+ *
+ * Return: 1 if success
+ *
+ * @input: the input to check
+*/
+
 int is_all_spc(char *input)
 {
 
 	int i = 0;
-        if(input ==NULL)
-                return 1;
+
+	if (input == NULL)
+		return (1);
 	while (input[i] != '\0')
-	{	
-		if (input[i] != ' ' &&  input[i] != '\n' )
+	{
+		if (input[i] != ' ' &&  input[i] != '\n')
 			return (0);
 		i++;
 	}
@@ -110,79 +120,80 @@ int is_all_spc(char *input)
 
 int main(int argc, char **argv)
 {
-	int  last_exit=0;
+	int last_exit = 0;
+
 	if (argc == 2)
 	{
 		last_exit = read_file(argv[1]);
-		return last_exit;
+		return (last_exit);
 	}
 	else
 	{
-	while (1)
-	{
-		char **commands, *input;
-		char **arguments;
-		int i;
+		while (1)
+		{
+			char **commands, *input;
+			char **arguments;
+			int i;
 
-		signal(SIGINT, sig_handler);
-		if (!environ)
-			exit(-100);
-		input = _getline();
-		if (is_all_spc(input))
-		{
-			free(input);
-			if (isatty(STDIN_FILENO) != 1)
+			signal(SIGINT, sig_handler);
+			if (!environ)
+				exit(-100);
+			input = _getline();
+			if (is_all_spc(input))
 			{
-				exit(0);
-				return(EXIT_SUCCESS);
-			}
-			continue;
-		}
-		commands = parse_cmd(input);
-		i = 0;
-		while (commands[i] != NULL)
-		{
-			arguments = get_arguments(commands[i]);
-			if (isBuiltIn(arguments[0]) == 1)
-			{
-				if(_strcmp(arguments[0], "exit") == 0)
+				free(input);
+				if (isatty(STDIN_FILENO) != 1)
 				{
-				
-					
-					last_exit = exit_function(arguments, last_exit);
-					free(commands);
-					free(input);
-					exit(last_exit);
+					exit(0);
 					return (EXIT_SUCCESS);
 				}
-				run_builtin_commands(arguments[0], arguments);
-				
+				continue;
 			}
-			else
+			commands = parse_cmd(input);
+			i = 0;
+			while (commands[i] != NULL)
 			{
-				last_exit = execute_command(arguments[0], arguments);
-				if (last_exit != 0)
+				arguments = get_arguments(commands[i]);
+				if (isBuiltIn(arguments[0]) == 1)
 				{
-					i++;
-					free(arguments);
-					continue;
+					if (_strcmp(arguments[0], "exit") == 0)
+					{
+
+
+						last_exit = exit_function(arguments, last_exit);
+						free(commands);
+						free(input);
+						exit(last_exit);
+						return (EXIT_SUCCESS);
+					}
+					run_builtin_commands(arguments[0], arguments);
+
 				}
+				else
+				{
+					last_exit = execute_command(arguments[0], arguments);
+					if (last_exit != 0)
+					{
+						i++;
+						free(arguments);
+						continue;
+					}
+				}
+				i++;
+				free(arguments);
+				arguments = NULL;
+
 			}
-			i++;
-		free(arguments);
-		arguments = NULL;
 
+			free(input);
+			free(commands);
+			input = NULL;
+			commands = NULL;
+			if (isatty(STDIN_FILENO) != 1)
+				break;
 		}
+	}
 
-		free(input);
-		free(commands);
-		input = NULL;
-		commands = NULL;
-		if (isatty(STDIN_FILENO) != 1)
-			break;
-	}
-	}
-	
 	exit(last_exit);
 	return (last_exit);
 }

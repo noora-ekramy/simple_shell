@@ -27,11 +27,11 @@ int _setenv(char *name, char *value, int overwrite)
 		env_key = _strtok(env_copy, "=");
 		if (_strcmp(env_key, name) == 0)
 		{
-                        free(env_copy);
+			free(env_copy);
 			flag = 1;
 			if (overwrite > 0)
 			{
-                                
+
 				if (check_new_value(environ[i]) == -1)
 					return (-1);
 				_strcpy(environ[i], name);
@@ -40,7 +40,7 @@ int _setenv(char *name, char *value, int overwrite)
 				return (0);
 			}
 		}
-                free(env_copy);
+		free(env_copy);
 
 		i++;
 	}
@@ -54,8 +54,9 @@ int _setenv(char *name, char *value, int overwrite)
 	_strcpy(new_value, name);
 	_strcat(new_value, "=");
 	_strcat(new_value, value);
-    environ[i] = new_value;
+	environ[i] = new_value;
 	environ[++i] = NULL;
+	free(new_value);
 	return (0);
 }
 
@@ -70,9 +71,10 @@ int _setenv(char *name, char *value, int overwrite)
 int check_new_value(char *new_value)
 {
 	if (new_value == NULL)
-        {	perror("malloc error");
-	return (-1);
-        }
-        return 0;
+	{
+		perror("malloc error");
+		return (-1);
+	}
+	return (0);
 }
 
