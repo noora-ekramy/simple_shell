@@ -47,8 +47,8 @@ void read_file(char *filename)
 	fp = fopen(filename, "r");
 	if (fp == NULL)
 	{
-		perror("fopen");
-		exit(EXIT_FAILURE);
+		fprintf(stderr, "./hsh: 0: Can't open %s\n", filename);
+        return (127);
 	}
 	while ((getline(&line, &len, fp)) != -1)
 	{
@@ -78,7 +78,8 @@ void read_file(char *filename)
 	if (line)
 		free(line);
 	fclose(fp);
-	exit(0);
+
+	return 0;
 }
 int is_all_spc(char *input)
 {
@@ -103,7 +104,10 @@ int main(int argc, char **argv)
 {
 	int  last_exit=0;
 	if (argc == 2)
-		read_file(argv[1]);
+	{
+		last_exit = read_file(argv[1]);
+		return last_exit;
+	}
 	else
 	{
 	while (1)
