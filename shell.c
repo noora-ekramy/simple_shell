@@ -170,8 +170,9 @@ int main(int argc, char **argv)
 			break;
 	}
 	}
+	printf("%i \n " , last_exit);
 	exit(last_exit);
-	return (EXIT_SUCCESS);
+	return (last_exit);
 }
 
 /**
