@@ -159,14 +159,9 @@ int main(int argc, char **argv)
 			i++;
 		free(arguments);
 		arguments = NULL;
-		if (isatty(STDIN_FILENO) != 1)
-		{
-			free(input);
-			free(commands);
-			exit(last_exit);
-			return(EXIT_SUCCESS);
+
 		}
-		}
+		
 		free(input);
 		free(commands);
 		input = NULL;
