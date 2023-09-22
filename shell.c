@@ -52,22 +52,28 @@ int read_file(char *filename)
 	}
 	while ((getline(&line, &len, fp)) != -1)
 	{
-		arguments = parse_cmd(line);
-		j=0;
-		while(arguments [j] != NULL)
-		{
-			printf("%s \n" ,arguments[j] );
-			j++;
-		}
-
-		if (isBuiltIn(arguments[0]) == 1)
-		{
-			run_builtin_commands(arguments[0], arguments);
-		}
+			arguments = get_arguments(line);
+			if (isBuiltIn(arguments[0]) == 1)
+			{
+				if(_strcmp(arguments[0], "exit") == 0)
+				{
+				
+					
+					last_exit = exit_function(arguments, last_exit);
+					free(commands);
+					free(input);
+					exit(last_exit);
+					return (EXIT_SUCCESS);
+				}
+				run_builtin_commands(arguments[0], arguments);
+				
+			}
 			else
 			{
-				if (execute_command(arguments[0], arguments) == -1)
+				last_exit = execute_command(arguments[0], arguments);
+				if (last_exit != 0)
 				{
+					
 					free(arguments);
 					continue;
 				}
@@ -148,7 +154,7 @@ int main(int argc, char **argv)
 					return (EXIT_SUCCESS);
 				}
 				run_builtin_commands(arguments[0], arguments);
-				printf("hi");
+				
 			}
 			else
 			{
