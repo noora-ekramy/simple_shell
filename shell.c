@@ -161,7 +161,7 @@ int main(int argc, char **argv)
 		arguments = NULL;
 
 		}
-		
+
 		free(input);
 		free(commands);
 		input = NULL;
@@ -170,6 +170,7 @@ int main(int argc, char **argv)
 			break;
 	}
 	}
+	exit(last_exit);
 	return (EXIT_SUCCESS);
 }
 
