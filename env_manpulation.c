@@ -23,7 +23,7 @@ int setenv_func(char *args[])
 	variable = args[1];
 	value = args[2];
 
-	if (_setenv(variable, value, 1) != 0)
+	if (setenv(variable, value, 1) != 0)
 	{
 		perror("setenv");
 		return (-1);
