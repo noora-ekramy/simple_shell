@@ -161,7 +161,7 @@ char *read_input_from_pipe()
     size_t inputSize = 0;
     char c;
     char *newInput;
-    size_t buffer_size = MAX_INPUT_SIZE; // Separate buffer size variable
+    size_t buffer_size = MAX_INPUT_SIZE; 
 
     if (input == NULL)
     {
@@ -173,7 +173,7 @@ char *read_input_from_pipe()
     {
         if (inputSize >= buffer_size - 1)
         {
-            size_t newSize = 2 * buffer_size; // Calculate the new size
+            size_t newSize = 2 * buffer_size; 
 
             newInput = (char *)realloc(input, newSize);
             if (newInput == NULL)
@@ -184,7 +184,7 @@ char *read_input_from_pipe()
             }
 
             input = newInput;
-            buffer_size = newSize; // Update the buffer size variable
+            buffer_size = newSize; 
         }
 
         input[inputSize++] = c;
