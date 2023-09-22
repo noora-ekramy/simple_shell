@@ -39,9 +39,10 @@ char **parse_cmd(char *input)
  */
 int read_file(char *filename)
 {
+	int  last_exit=0;
 	FILE *fp;
 	char *line = NULL;
-	size_t len = 0, j;
+	size_t len = 0;
 	char **arguments;
 
 	fp = fopen(filename, "r");
@@ -56,12 +57,8 @@ int read_file(char *filename)
 			if (isBuiltIn(arguments[0]) == 1)
 			{
 				if(_strcmp(arguments[0], "exit") == 0)
-				{
-				
-					
+				{			
 					last_exit = exit_function(arguments, last_exit);
-					free(commands);
-					free(input);
 					exit(last_exit);
 					return (EXIT_SUCCESS);
 				}
