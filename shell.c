@@ -1,6 +1,6 @@
 #include "shell.h"
 #include <stdlib.h>
-
+int is_all_spc(char *input);
 /**
  * parse_cmd - Parse Line Of Input
  * @input:User Input To Parse
@@ -43,7 +43,7 @@ int read_file(char *filename)
 	FILE *fp;
 	char *line = NULL;
 	size_t len = 0;
-	char **arguments;
+	char **arguments , *input;
 
 	fp = fopen(filename, "r");
 	if (fp == NULL)
@@ -51,9 +51,17 @@ int read_file(char *filename)
 		fprintf(stderr, "./hsh: 0: Can't open %s\n", filename);
         return (127);
 	}
-	while ((getline(&line, &len, fp)) != -1)
+	while ((getline(&line, &len, fp))!= -1)
 	{
-			arguments = get_arguments(line);
+
+                input = _strtok(line, "\n");
+                if (is_all_spc(input))
+                {
+                        last_exit =0;
+                        continue;
+                }
+                
+			arguments = get_arguments(input);
 			if (isBuiltIn(arguments[0]) == 1)
 			{
 				if(_strcmp(arguments[0], "exit") == 0)
@@ -68,17 +76,11 @@ int read_file(char *filename)
 			else
 			{
 				last_exit = execute_command(arguments[0], arguments);
-				if (last_exit != 0)
-				{
-					
-					free(arguments);
-					continue;
-				}
-			}
-
-		free(arguments);
+			}       
+                if(arguments != NULL)
+		        free(arguments);
 	}
-	if (line)
+	if (line!= NULL)
 		free(line);
 	fclose(fp);
 
@@ -86,7 +88,10 @@ int read_file(char *filename)
 }
 int is_all_spc(char *input)
 {
+
 	int i = 0;
+        if(input ==NULL)
+                return 1;
 	while (input[i] != '\0')
 	{	
 		if (input[i] != ' ' &&  input[i] != '\n' )
