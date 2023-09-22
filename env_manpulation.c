@@ -51,7 +51,7 @@ int unsetenv_func(char *args[])
 		return (-1);
 	}
 	variable = args[1];
-	if (unsetenv(variable) != 0)
+	if (_unsetenv(variable) != 0)
 	{
 		perror("unsetenv");
 		return (-1);
