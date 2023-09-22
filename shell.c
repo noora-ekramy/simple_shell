@@ -85,7 +85,7 @@ int is_all_spc(char *input)
 	int i = 0;
 	while (input[i] != '\0')
 	{	
-		if (input[i] != ' ' && input[i] != '\n' )
+		if (input[i] != ' ' &&  input[i] != '\n' )
 			return (0);
 		i++;
 	}
@@ -119,6 +119,11 @@ int main(int argc, char **argv)
 		if (is_all_spc(input))
 		{
 			free(input);
+			if (isatty(STDIN_FILENO) != 1)
+			{
+				exit(0);
+				return(EXIT_SUCCESS);
+			}
 			continue;
 		}
 		commands = parse_cmd(input);
@@ -154,6 +159,13 @@ int main(int argc, char **argv)
 			i++;
 		free(arguments);
 		arguments = NULL;
+		if (isatty(STDIN_FILENO) != 1)
+		{
+			free(input);
+			free(commands);
+			exit(last_exit);
+			return(EXIT_SUCCESS);
+		}
 		}
 		free(input);
 		free(commands);
