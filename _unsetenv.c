@@ -22,20 +22,18 @@ int _unsetenv(char *name)
 		{
 			if (environ[i + 1] != NULL)
 			{
-				environ[i] = malloc(_strlen(environ[i + 1]) + 1);
-				if (environ[i] == NULL)
-					return (-1);
 				_strcpy(environ[i], environ[i + 1]);
 			}
 			else
 				environ[i] = NULL;
 		}
 		if (_strcmp(env_key, name) == 0)
-		{
+		{ 
+            free(env_copy);
 			flag = 1;
 			continue;
 		}
-
+        free(env_copy);
 		i++;
 	}
 	return (0);

@@ -45,13 +45,13 @@ int unsetenv_func(char *args[])
 	while (args[argCount] != NULL)
 		argCount++;
 
-	if (argCount < 3 || args[1] == NULL)
+	if (argCount < 2 || args[1] == NULL)
 	{
 		perror("unsetenv");
 		return (-1);
 	}
 	variable = args[1];
-	if (_unsetenv(variable) != 0)
+	if (unsetenv(variable) != 0)
 	{
 		perror("unsetenv");
 		return (-1);
