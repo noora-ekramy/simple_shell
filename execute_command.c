@@ -16,7 +16,7 @@ int execute_command(const char *command, char *const arguments[])
 	{
 		free(command_location);
 		fprintf(stderr, "./hsh: 1: %s: not found\n", command);
-        return(127);
+        return(-1);
 	}
 	child_pid = fork();
 	if (child_pid == -1)
