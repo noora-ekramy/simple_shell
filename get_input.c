@@ -156,39 +156,45 @@ char ** get_arguments( char *input)
  */
 char *read_input_from_pipe()
 {
-	char *input = (char *)malloc(MAX_INPUT_SIZE);
-	ssize_t bytesRead;
-	size_t inputSize = 0;
-	char c;
-	char *newInput;
+    char *input = (char *)malloc(MAX_INPUT_SIZE);
+    ssize_t bytesRead;
+    size_t inputSize = 0;
+    char c;
+    char *newInput;
 
-	if (input == NULL)
-	{
-		perror("Failed to allocate memory");
-		exit(EXIT_FAILURE);
-	}
-	while ((bytesRead = read(STDIN_FILENO, &c, 1)) > 0)
-	{
-		if (inputSize >= MAX_INPUT_SIZE - 1)
-		{
-			newInput = (char *)realloc(input, 2 * MAX_INPUT_SIZE);
-			if (newInput == NULL)
-			{
-				perror("Failed to reallocate memory");
-				free(input);
-				exit(EXIT_FAILURE);
-			}
-			input = newInput;
-		}
+    if (input == NULL)
+    {
+        perror("Failed to allocate memory");
+        exit(EXIT_FAILURE);
+    }
 
-		input[inputSize++] = c;
+    while ((bytesRead = read(STDIN_FILENO, &c, 1)) > 0)
+    {
+        if (inputSize >= MAX_INPUT_SIZE - 1)
+        {
+            size_t newSize = 2 * MAX_INPUT_SIZE; 
 
-		if (c == EOF || c == '\0')
-		{
-			break;
-		}
-	}
-	input[inputSize] = '\0';
+            newInput = (char *)realloc(input, newSize);
+            if (newInput == NULL)
+            {
+                perror("Failed to reallocate memory");
+                free(input);
+                exit(EXIT_FAILURE);
+            }
 
-	return (input);
+            input = newInput;
+            MAX_INPUT_SIZE = newSize; 
+        }
+
+        input[inputSize++] = c;
+
+        if (c == EOF || c == '\0')
+        {
+            break;
+        }
+    }
+
+    input[inputSize] = '\0';
+
+    return input;
 }
