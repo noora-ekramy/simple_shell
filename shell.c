@@ -37,7 +37,7 @@ char **parse_cmd(char *input)
  * @filename: File name
  * Return: -1 or  0
  */
-void read_file(char *filename)
+int read_file(char *filename)
 {
 	FILE *fp;
 	char *line = NULL;
