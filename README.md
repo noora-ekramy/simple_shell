@@ -1,6 +1,6 @@
 # Simple Shell 
 
-![Example Image](sea shell compi 0 (1).png)
+![Example Image](shell.png)
 A simple shell program for Unix-based systems, inspired by the Thompson Shell.
 
 ## Project Description 🚀
