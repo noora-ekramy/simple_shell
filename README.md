@@ -132,11 +132,40 @@ $ cd simple_shell
 ```bash
 $ make
 ```
-4. Run the shell by executing the compiled binary:
+###interactive mode
+Run the shell in interactive mode by executing the compiled binary. You can do this with the command:
 ```bash
 $./hsh
 ```
-Now, you're ready to begin using the `hsh` shell to execute commands and manage processes.
+Now, you can enter commands and receive real-time output.
+
+###Non-Interactive Mode (Using Pipes)
+In non-interactive mode, you can use the shell to execute commands from a file or by using pipes to provide input. Follow these steps:
+1. Create a text file (e.g., `commands.txt`) containing one command per line.
+2. Run the shell in non-interactive mode by providing the file as input. You can do this with the command:
+```bash
+cat commands.txt | ./hsh
+```
+Alternatively, you can use pipes directly with `echo` to provide input to the shell. For example:
+
+```bash
+echo "ls -l" | ./hsh
+```
+
+The shell will execute the commands and provide output.
+
+### File Input Mode
+
+This mode is useful for executing a series of commands stored in a file without the need for user interaction. Follow these steps:
+
+1. Create a text file (e.g., `script.sh`) containing one command per line.
+
+2. Run the shell with the file as an argument. You can do this with the command:
+```bash
+./hsh script.sh
+```
+The shell will execute the commands from the file without displaying a prompt or reading from standard input.
+Now, you're ready to use the `hsh` shell in interactive, non-interactive (using pipes), or file input mode to execute commands and manage processes.
 
 ## Contributors
 
