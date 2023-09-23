@@ -23,7 +23,59 @@ The Simple Shell Program distinguishes itself through its dedication to customiz
 ## Environment
 
 The shell program has been developed and tested on the following environment:
-- Operating System: Ubuntu 20.04
+
+- **Operating System:** Ubuntu 20.04
+
+## Allowed Functions
+
+The shell program utilizes the following functions, all implemented in C:
+
+- access
+- chdir
+- close
+- closedir
+- execve
+- exit
+- _exit
+- fflush
+- fork
+- free
+- getcwd
+- getpid
+- isatty
+- kill
+- malloc
+- open
+- opendir
+- perror
+- read
+- readdir
+- signal
+- stat (__xstat)
+- lstat (__lxstat)
+- fstat (__fxstat)
+- wait
+- waitpid
+- wait3
+- wait4
+- write
+
+Additionally, the shell program implements the following functions from scratch:
+- cd 
+- setenv
+- unsetenv
+- env
+- _atoi
+- _putchar
+- _strcat
+- _strcmp
+- _strcpy
+- _strcspn
+- _strdup
+- _strlen
+- _strtok
+
+These functions are used to implement various functionalities of the shell program and interact with the operating system.
 
 ## Key Features
 
