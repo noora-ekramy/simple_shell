@@ -132,14 +132,14 @@ $ cd simple_shell
 ```bash
 $ make
 ```
-###interactive mode
+### interactive mode
 Run the shell in interactive mode by executing the compiled binary. You can do this with the command:
 ```bash
 $./hsh
 ```
 Now, you can enter commands and receive real-time output.
 
-###Non-Interactive Mode (Using Pipes)
+### Non-Interactive Mode (Using Pipes)
 In non-interactive mode, you can use the shell to execute commands from a file or by using pipes to provide input. Follow these steps:
 1. Create a text file (e.g., `commands.txt`) containing one command per line.
 2. Run the shell in non-interactive mode by providing the file as input. You can do this with the command:
