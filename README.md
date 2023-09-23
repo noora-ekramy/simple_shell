@@ -9,10 +9,12 @@ This project is an implementation of a simple Unix shell, inspired by the Thomps
 ## Table of Contents
 - [Introduction](#introduction)
 - [Environment](#environment)
+- [Allowed Functions](#allowed-functions)
 - [Key Features](#key-features)
 - [How to Use](#how-to-use)
 - [Contributors](#contributors)
 - [License and Copyright](#license-and-copyright)
+
 
 ## Introduction
 
@@ -74,24 +76,45 @@ Additionally, the shell program implements the following functions from scratch:
 - _strdup
 - _strlen
 - _strtok
+- _getline
 
 These functions are used to implement various functionalities of the shell program and interact with the operating system.
 
 ## Key Features
 
-- **Interactive Shell**: The shell provides an interactive command-line interface where users can enter commands and receive output.
+- **Interactive, Non-Interactive, and File Input Modes:**
+  - Interactive mode allows users to enter commands and receive real-time output.
+  - Non-interactive mode reads commands from a file, executing them without a prompt.
+  - File input mode is supported with the usage: `simple_shell [filename]`, one command per line.
 
-- **Error Handling**: Comprehensive error handling ensures that the shell gracefully handles various scenarios, including command not found errors and other exceptions.
+- **Error Handling:** 
+  - Comprehensive error handling gracefully manages various scenarios, including command not found errors and exceptions.
 
-- **Command Execution**: The shell is capable of executing external commands by locating executables in the system's PATH.
+- **Command Execution:** 
+  - The shell executes external commands by locating executables in the system's PATH.
+  - It avoids unnecessary forking if a command doesn't exist.
 
-- **Built-In Commands**: It supports built-in commands like `cd`, `exit`, `env`, `setenv`, and `unsetenv`.
+- **Built-In Commands:** 
+  - Supports built-in commands like `cd`, `exit`, `env`, `setenv`, and `unsetenv`.
 
-- **Signal Handling**: The shell handles signals like Ctrl-C (SIGINT) to prevent unintended termination.
+- **Signal Handling:** 
+  - Handles signals such as Ctrl-C (SIGINT) to prevent unintended termination.
 
-- **Argument Parsing**: Users can provide arguments with commands, allowing for more complex command execution.
+- **Argument Parsing:** 
+  - Allows users to provide arguments with commands for more complex executions.
 
-- **Exit Status**: The shell maintains exit statuses and supports the `exit` command to exit the shell with a specified status.
+- **Exit Status:** 
+  - Maintains exit statuses and supports the `exit` command to exit the shell with a specified status.
+
+- **Custom `getline` Function:** 
+  - Implements a custom `getline` function for efficient input reading.
+  - Uses a buffer to minimize calls to the `read` system call and employs static variables.
+
+- **Handling the PATH:** 
+  - Manages the system's PATH variable to locate and execute external commands efficiently.
+
+These features make the shell versatile and efficient, capable of handling various use cases and providing a user-friendly interface.
+
 
 ## How to Use
 
